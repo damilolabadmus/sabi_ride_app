@@ -1,0 +1,78 @@
+name: sabi
+description: A new Flutter project.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.19.6 <3.0.0'
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  cupertino_icons: ^1.0.2
+#  quiver: ^2.1.4
+  flutter_svg: ^0.22.0
+  smooth_page_indicator: ^1.1.0
+#  google_maps_flutter: ^2.1.1
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+
+flutter:
+
+
+  uses-material-design: true
+
+  fonts:
+    - family: Raleway
+      fonts:
+        - asset: fonts/Raleway.ttf
+
+    - family: Raleway-Light
+      fonts:
+        - asset: fonts/Raleway-Light.ttf
+
+    - family: Poppins-Regular
+      fonts:
+        - asset: fonts/Poppins-Regular.ttf
+
+    - family: Poppins-Bold
+      fonts:
+        - asset: fonts/Poppins-Bold.ttf
+
+    - family: Nunito
+      fonts:
+        - asset: fonts/Nunito-Regular.ttf
+        - asset: fonts/Nunito-SemiBold.ttf
+          weight: 600
+        - asset: fonts/Nunito-Bold.ttf
+          weight: 700
+
+
+
+
+
+  assets:
+    - assets/
+    - assets/mobile_hold.svg
+    - assets/mobile_hold.png
+    - assets/mobile.svg
+    - assets/mobile.png
+    - assets/ride_tracker.svg
+    - assets/ride_tracker.png
+
+    - assets/account_pr.svg
+    - assets/biodata_bank.svg
+    - assets/biodata_relationship.svg
+    - assets/google_map_image.png
+
+    - assets/location_tracker.svg
