@@ -73,6 +73,7 @@ flutter:
     - assets/account_pr.svg
     - assets/biodata_bank.svg
     - assets/biodata_relationship.svg
+    - assets/location_point.png
     - assets/google_map_image.png
 
     - assets/location_tracker.svg

@@ -12,7 +12,7 @@ class LoginMobile extends StatefulWidget {
 class _LoginMobileState extends State<LoginMobile> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold (
       body: Stack(
           children: [
             Column(

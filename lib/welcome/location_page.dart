@@ -21,7 +21,7 @@ class _LocationPageState extends State<LocationPage> {
 */
   @override
   Widget build(BuildContext context) {
-    Future.delayed(const Duration(seconds: 1), () {
+    Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,
         PageRouteBuilder(
