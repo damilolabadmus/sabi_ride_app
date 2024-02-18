@@ -1,23 +1,14 @@
 import 'package:flutter/material.dart';
-import 'notification_page.dart';
+import 'package:sabi/welcome/settings.dart';
 
-class MessagingPage extends StatefulWidget {
-  const MessagingPage({super.key});
+class InvitationList extends StatefulWidget {
+  const InvitationList({super.key});
 
   @override
-  State<MessagingPage> createState() => _MessagingPageState();
+  State<InvitationList> createState() => _InvitationListState();
 }
 
-class _MessagingPageState extends State<MessagingPage> {
-  final TextEditingController _messageController = TextEditingController();
-  final List<String> _messages = []; // Store messages
-
-  void _sendMessage(String message) {
-    setState(() {
-      _messages.add(message); // Add outgoing message to the list
-    });
-    _messageController.clear();
-  }
+class _InvitationListState extends State<InvitationList> {
   @override
   Widget build(BuildContext context) {
     Future.delayed(const Duration(minutes: 2), () {
@@ -25,7 +16,7 @@ class _MessagingPageState extends State<MessagingPage> {
         context,
         PageRouteBuilder(
           transitionDuration: const Duration(milliseconds: 700),
-          pageBuilder: (_, __, ___) => const NotificationPage(),
+          pageBuilder: (_, __, ___) => const Settings(),
           transitionsBuilder: (_, animation, __, child) {
             return SlideTransition(
               position: Tween<Offset>(
@@ -56,7 +47,7 @@ class _MessagingPageState extends State<MessagingPage> {
                     color: Colors.white,
                     onPressed: () {
                       Navigator.pop(context);
-                  },),
+                    },),
                   const SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -123,24 +114,5 @@ class _MessagingPageState extends State<MessagingPage> {
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildMessage(String message) {
-    return Align(
-      alignment: Alignment.centerRight,
-      child: Container(
-        padding: const EdgeInsets.all(12.0),
-        margin: const EdgeInsets.only(right: 16.0, left: 48.0, bottom: 8.0),
-        decoration: BoxDecoration(
-          color: Colors.greenAccent,
-          borderRadius: BorderRadius.circular(6.0),
-        ),
-        child: Text(
-          message,
-          style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w700),
-        ),
-      ),
-    );
-  }
+    );  }
 }
