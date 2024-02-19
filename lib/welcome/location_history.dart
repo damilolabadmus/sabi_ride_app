@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:sabi/welcome/messaging_page.dart';
 
 class LocationHistory extends StatefulWidget {
@@ -13,7 +12,7 @@ class _LocationHistoryState extends State<LocationHistory> {
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(const Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,
         PageRouteBuilder(
@@ -49,7 +48,12 @@ class _LocationHistoryState extends State<LocationHistory> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Icon(Icons.arrow_back_ios, color: Colors.white, size:25),
+                            IconButton(
+                              icon: const Icon(Icons.arrow_back_ios),
+                              color: Colors.white,
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -63,7 +67,7 @@ class _LocationHistoryState extends State<LocationHistory> {
                                       letterSpacing: 2
                                   ),
                                 ),
-                                IconButton(onPressed: () {}, icon: const Icon(Icons.keyboard_arrow_down))
+                                IconButton(onPressed: () {}, icon: const Icon(Icons.keyboard_arrow_down, color: Colors.white, size: 35))
                               ],
                             ),
                           ],),
@@ -72,7 +76,7 @@ class _LocationHistoryState extends State<LocationHistory> {
                   ),
                 ),
                 Expanded(
-                  flex: 2,
+                  flex: 3,
                   child: Container(
                     color: Colors.grey.shade200,
                   ),
@@ -81,11 +85,11 @@ class _LocationHistoryState extends State<LocationHistory> {
             ),
             Positioned.fill(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  const SizedBox(height: 150),
                   Container(
                     width: 370,
-                    height: 180,
+                    height: 160,
                     decoration: BoxDecoration(
                       borderRadius: const BorderRadius.all(Radius.circular(10)),
                       color: Colors.white,
@@ -142,7 +146,7 @@ class _LocationHistoryState extends State<LocationHistory> {
                   const SizedBox(height: 10),
                   Container(
                     width: 370,
-                    height: 180,
+                    height: 160,
                     decoration: BoxDecoration(
                       borderRadius: const BorderRadius.all(Radius.circular(10)),
                       color: Colors.white,
@@ -199,7 +203,7 @@ class _LocationHistoryState extends State<LocationHistory> {
                   const SizedBox(height: 10),
                   Container(
                     width: 370,
-                    height: 180,
+                    height: 160,
                     decoration: BoxDecoration(
                       borderRadius: const BorderRadius.all(Radius.circular(10)),
                       color: Colors.white,

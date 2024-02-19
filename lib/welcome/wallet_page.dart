@@ -11,11 +11,22 @@ class WalletPage extends StatefulWidget {
 class _WalletPageState extends State<WalletPage> {
   @override
   Widget build(BuildContext context) {
-    Future.delayed(const Duration(minutes: 2), () {
+
+    final List<String> walletItems = [
+      'Payment Methods',
+      'Coupon',
+      'Integral Mall'
+    ];
+
+    final List<String> walletInfo = [
+      ' ', '3', '4500'
+    ];
+
+    Future.delayed(const Duration(seconds: 2), () {
       Navigator.pushReplacement(
         context,
         PageRouteBuilder(
-          transitionDuration: const Duration(milliseconds: 700),
+          transitionDuration: const Duration(milliseconds: 200),
           pageBuilder: (_, __, ___) => const PaymentMethod(),
           transitionsBuilder: (_, animation, __, child) {
             return SlideTransition(
@@ -31,88 +42,124 @@ class _WalletPageState extends State<WalletPage> {
     });
 
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+      body: Stack(
           children: [
-            Container(
-              color: Colors.amber,
-              padding: const EdgeInsets.all(15.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.arrow_back_ios),
-                    color: Colors.white,
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },),
-                  const SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text(
-                        'Kennedy Okoro',
-                        style: TextStyle(
-                          fontSize: 28,
-                          fontFamily: 'Poppins-Bold',
-                          color: Colors.white,
-                        ),
-                      ),
-                      CircleAvatar(backgroundColor: Colors.blueGrey.shade50, radius: 30.0)
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              child: ListView.builder(
-                itemCount: _messages.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
-                    child: _buildMessage(_messages[index]),
-                  );
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Row(
-                children: [
-                  Expanded(
+            Column(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    color: Colors.amber,
                     child: Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey.shade200, width: 1), // Border color
-                          borderRadius: BorderRadius.circular(5.0),
-                          color: Colors.grey.shade100// Border radius
-                      ),
-                      child: TextField(
-                        controller: _messageController,
-                        decoration: const InputDecoration(
-                          hintText: 'Type a message...',
-                          border: InputBorder.none, // Remove default border
-                          contentPadding: EdgeInsets.symmetric(horizontal: 10.0),
-                        ),
+                      color: Colors.amber,
+                      child: Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Icon(Icons.arrow_back_ios, color: Colors.white, size:25),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text(
+                                  'History',
+                                  style: TextStyle(
+                                      fontSize: 28,
+                                      fontWeight: FontWeight.w700,
+                                      fontFamily: 'Poppins-Regular',
+                                      color: Colors.white,
+                                      letterSpacing: 2
+                                  ),
+                                ),
+                                IconButton(onPressed: () {}, icon: const Icon(Icons.keyboard_arrow_down))
+                              ],
+                            ),
+                          ],),
                       ),
                     ),
                   ),
-                  const SizedBox(width: 8.0),
-                  IconButton(
-                    onPressed: () {
-                      String message = _messageController.text;
-                      if (message.isNotEmpty) {
-                        _sendMessage(message);
-                      }
-                    },
-                    icon: const Icon(Icons.send_outlined, color: Colors.greenAccent),
-                  )
-                ],
+                ),
+                Expanded(
+                  flex: 2,
+                  child: Container(
+                    color: Colors.grey.shade200,
+                  ),
+                ),
+              ],
+            ),
+            Positioned.fill(
+              child: Align(
+                alignment: Alignment.center,
+                child: Container(
+                  width: 370,
+                  height: 380,
+                  decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      color: Colors.white),
+                  child: Column(
+                     children: [
+                       ListTile(
+                         leading: CircleAvatar(
+                         backgroundColor: Colors.blueGrey.shade50,
+                         radius: 20.0),
+                         title: const Text('Cash', style: TextStyle(color: Colors.black),),
+                         subtitle: const Text('Default Payment Method', style: TextStyle(color: Colors.black54),),
+                         trailing: IconButton(icon: const Icon(Icons.navigate_next, color: Colors.grey, size: 12), onPressed: () {},),
+                       ),
+                       const Divider(thickness: 0.5, color: Colors.black26),
+                       Row(
+                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                         children: [
+                         Column(children: const [
+                           Text('BALANCE', style: TextStyle(color: Colors.black54),),
+                           Text('N2500', style: TextStyle(color: Colors.red)),
+                         ],),
+                         Column(children: const [
+                           Text('EXPIRES', style: TextStyle(color: Colors.black54),),
+                           Text('09/21', style: TextStyle(color: Colors.red)),
+                         ],)],),
+                       ListView.builder(
+                         itemCount: walletItems.length,
+                         itemBuilder: (BuildContext context, int index) {
+                           if (index < walletItems.length && index < walletInfo.length) {
+                             return Column(
+                               children: [
+                                 Card(
+                                   elevation: 2,
+                                   color: Colors.white,
+                                   child: Padding(
+                                     padding: const EdgeInsets.all(8.0),
+                                     child: Row(
+                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                       children: [
+                                         Text(walletItems[index]),
+                                         Row(children: [
+                                           Text(walletInfo[index], style: const TextStyle(color: Colors.grey),),
+                                           IconButton(
+                                               onPressed: () {},
+                                               icon: const Icon(Icons.navigate_next))
+                                         ],)
+                                       ],),
+                                   ),
+                                   ),
+                                const SizedBox(
+                                  height: 5,
+                                 ),
+                                ],
+                              );
+                            } else {
+                          return const SizedBox();
+                         }
+                       },
+                     ),
+                   ],
+                  ),
+                ),
               ),
             ),
-          ],
-        ),
+          ]
       ),
-    );  }
+    );
+  }
 }

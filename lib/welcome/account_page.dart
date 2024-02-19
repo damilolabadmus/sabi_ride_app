@@ -11,6 +11,21 @@ class AccountPage extends StatefulWidget {
 class _AccountPageState extends State<AccountPage> {
   @override
   Widget build(BuildContext context) {
+
+    final List<String> accountItems = [
+      'Level', 'Name',
+      'Email', 'Gender',
+      'Birthday',
+      'Phone number'
+    ];
+
+    final List<String> personalInfo = [
+      'Gold Member', 'Emeka Chioma',
+      'freeslad88@gmail.com', 'Male',
+      'April 16, 1988',
+      '+234 9031193287'
+    ];
+
     Future.delayed(const Duration(minutes: 2), () {
       Navigator.pushReplacement(
         context,
@@ -48,72 +63,70 @@ class _AccountPageState extends State<AccountPage> {
                     onPressed: () {
                       Navigator.pop(context);
                     },),
-                  const SizedBox(height: 10),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text(
-                        'Kennedy Okoro',
+                        'My Account',
                         style: TextStyle(
                           fontSize: 28,
                           fontFamily: 'Poppins-Bold',
                           color: Colors.white,
                         ),
                       ),
-                      CircleAvatar(backgroundColor: Colors.blueGrey.shade50, radius: 30.0)
+                      CircleAvatar(
+                          backgroundColor: Colors.blueGrey.shade50,
+                          radius: 30.0),
                     ],
                   ),
+                  // CircleAvatar(backgroundColor: Colors.blueGrey.shade50, radius: 30.0),
                 ],
               ),
             ),
             Expanded(
-              child: ListView.builder(
-                itemCount: _messages.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
-                    child: _buildMessage(_messages[index]),
-                  );
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey.shade200, width: 1), // Border color
-                          borderRadius: BorderRadius.circular(5.0),
-                          color: Colors.grey.shade100// Border radius
-                      ),
-                      child: TextField(
-                        controller: _messageController,
-                        decoration: const InputDecoration(
-                          hintText: 'Type a message...',
-                          border: InputBorder.none, // Remove default border
-                          contentPadding: EdgeInsets.symmetric(horizontal: 10.0),
-                        ),
-                      ),
+              child: Container(
+                color: Colors.white,
+                child: Column(
+                  children: [
+                    ListView.builder(
+                      itemCount: accountItems.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        if (index < accountItems.length && index < personalInfo.length) {
+                          return Column(
+                            children: [
+                              Card(
+                                elevation: 2,
+                                color: Colors.white,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                    Text(accountItems[index]),
+                                    Row(children: [
+                                      Text(personalInfo[index], style: const TextStyle(color: Colors.grey),),
+                                      IconButton(
+                                          onPressed: () {},
+                                          icon: const Icon(Icons.navigate_next))
+                                    ],)
+                                  ],),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                            ],
+                          );
+                        } else {
+                          return const SizedBox();
+                        }
+                      },
                     ),
-                  ),
-                  const SizedBox(width: 8.0),
-                  IconButton(
-                    onPressed: () {
-                      String message = _messageController.text;
-                      if (message.isNotEmpty) {
-                        _sendMessage(message);
-                      }
-                    },
-                    icon: const Icon(Icons.send_outlined, color: Colors.greenAccent),
-                  )
-                ],
+                  ],
+                ),
               ),
             ),
           ],
         ),
       ),
-    );
-  }
+    );  }
 }

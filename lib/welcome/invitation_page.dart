@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sabi/welcome/invitation_list.dart';
+import '../components/button.dart';
 
 class InvitationPage extends StatefulWidget {
   const InvitationPage({super.key});
@@ -9,110 +10,112 @@ class InvitationPage extends StatefulWidget {
 }
 
 class _InvitationPageState extends State<InvitationPage> {
+
   @override
   Widget build(BuildContext context) {
-    Future.delayed(const Duration(minutes: 2), () {
-      Navigator.pushReplacement(
-        context,
-        PageRouteBuilder(
-          transitionDuration: const Duration(milliseconds: 700),
-          pageBuilder: (_, __, ___) => const InvitationList(),
-          transitionsBuilder: (_, animation, __, child) {
-            return SlideTransition(
-              position: Tween<Offset>(
-                begin: const Offset(1.0, 0.0),
-                end: Offset.zero,
-              ).animate(animation),
-              child: child,
-            );
-          },
-        ),
-      );
-    });
-
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Container(
-              color: Colors.amber,
-              padding: const EdgeInsets.all(15.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.arrow_back_ios),
-                    color: Colors.white,
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },),
-                  const SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text(
-                        'Kennedy Okoro',
-                        style: TextStyle(
-                          fontSize: 28,
-                          fontFamily: 'Poppins-Bold',
-                          color: Colors.white,
-                        ),
-                      ),
-                      CircleAvatar(backgroundColor: Colors.blueGrey.shade50, radius: 30.0)
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              child: ListView.builder(
-                itemCount: _messages.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
-                    child: _buildMessage(_messages[index]),
-                  );
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Row(
+    return SafeArea(
+      child: Scaffold (
+        body: Stack(
+            children: [
+              Column(
                 children: [
                   Expanded(
+                    flex: 3,
                     child: Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey.shade200, width: 1), // Border color
-                          borderRadius: BorderRadius.circular(5.0),
-                          color: Colors.grey.shade100// Border radius
+                      color: Colors.yellow.shade500,
+                      padding: const EdgeInsets.only(top: 12.0, bottom: 10),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              IconButton(
+                                icon: const Icon(Icons.arrow_back_ios),
+                                color: Colors.white,
+                                iconSize: 30,
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },),
+                              const Text(
+                                'Invite Friends',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w900,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 16.0),
+                            child: Image.asset('assets/gift_box.png', height: 200, width: 250),
+                          ),
+                          Column(children: const [
+                            Text(
+                              'Invite Friends',
+                              style: TextStyle(
+                                fontSize: 30,
+                                fontWeight: FontWeight.w300,
+                                color: Colors.black,
+                              ),
+                            ),
+                            Text(
+                              'When your friend sign up with\nyour referral code',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ],)
+                        ],
                       ),
-                      child: TextField(
-                        controller: _messageController,
-                        decoration: const InputDecoration(
-                          hintText: 'Type a message...',
-                          border: InputBorder.none, // Remove default border
-                          contentPadding: EdgeInsets.symmetric(horizontal: 10.0),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      color: Colors.grey.shade100,
+                      padding: const EdgeInsets.symmetric(horizontal: 18),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            const Text(
+                              'Share Your Invite Code',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontFamily: 'Poppins-Bold',
+                                color: Colors.white,
+                              ),
+                            ),
+                            const TextField(showCursor: true,
+                              maxLines: 2,
+                              decoration: InputDecoration(
+                                  hintText: 'Y045KG',
+                                  hintStyle: TextStyle(color: Colors.black, fontSize: 20)
+                                // border: InputBorder.none,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 8.0, top: 10),
+                              child: RoundedButton(
+                                  text: 'Submit Review',
+                                  press: () {
+                                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const InvitationList()));
+                                  },
+                                  color: Colors.greenAccent,
+                                  textColor: Colors.white),
+                            ),
+                          ],
                         ),
                       ),
                     ),
                   ),
-                  const SizedBox(width: 8.0),
-                  IconButton(
-                    onPressed: () {
-                      String message = _messageController.text;
-                      if (message.isNotEmpty) {
-                        _sendMessage(message);
-                      }
-                    },
-                    icon: const Icon(Icons.send_outlined, color: Colors.greenAccent),
-                  )
                 ],
               ),
-            ),
-          ],
+            ]
         ),
       ),
-    );  }
-}
+    );
+}}

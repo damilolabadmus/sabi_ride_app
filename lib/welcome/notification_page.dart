@@ -43,11 +43,11 @@ final List<Color> iconsColor = [
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(const Duration(seconds: 4), () {
+    Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,
         PageRouteBuilder(
-          transitionDuration: const Duration(milliseconds: 400),
+          transitionDuration: const Duration(milliseconds: 200),
           pageBuilder: (_, __, ___) => const Rating(),
           transitionsBuilder: (_, animation, __, child) {
             return SlideTransition(
@@ -105,35 +105,38 @@ final List<Color> iconsColor = [
               ),
             ),
             Expanded(
-              child: Container(
-                color: Colors.white,
-                child: ListView.builder(
-                  itemCount: titles?.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    if (index < titles!.length && index < subTitles!.length && index < avatarIcon.length && index < iconsColor.length) {
-                      return Column(
-                        children: [
-                          ListTile(
-                            contentPadding: const EdgeInsets.symmetric(vertical: 8.0), // Add vertical padding
-                            leading: CircleAvatar(
-                              radius: 20.0,
-                              backgroundColor: Colors.white.withOpacity(0.8),
-                              child: Icon(avatarIcon[index], color: iconsColor[index]),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  color: Colors.white,
+                  child: ListView.builder(
+                    itemCount: titles?.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      if (index < titles!.length && index < subTitles!.length && index < avatarIcon.length && index < iconsColor.length) {
+                        return Column(
+                          children: [
+                            ListTile(
+                              contentPadding: const EdgeInsets.symmetric(vertical: 8.0), // Add vertical padding
+                              leading: CircleAvatar(
+                                radius: 20.0,
+                                backgroundColor: Colors.white.withOpacity(0.8),
+                                child: Icon(avatarIcon[index], color: iconsColor[index]),
+                              ),
+                              title: Text(titles![index]),
+                              subtitle: Text(subTitles![index]),
+                              onTap: () {},
                             ),
-                            title: Text(titles![index]),
-                            subtitle: Text(subTitles![index]),
-                            onTap: () {},
-                          ),
-                          Container(
-                            height: 1, // Height of the divider line
-                            color: Colors.grey.shade300, // Color of the divider line
-                          ),
-                        ],
-                      );
-                    } else {
-                      return const SizedBox();
-                    }
-                  },
+                            Container(
+                              height: 1, // Height of the divider line
+                              color: Colors.grey.shade300, // Color of the divider line
+                            ),
+                          ],
+                        );
+                      } else {
+                        return const SizedBox();
+                      }
+                    },
+                  ),
                 ),
               ),
             ),

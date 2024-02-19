@@ -24,9 +24,14 @@ class _PhoneVerificationState extends State<PhoneVerification> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Icon(Icons.arrow_back_ios, color: Colors.white, size:25),
-                  Text(
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.arrow_back_ios),
+                    color: Colors.white,
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },),
+                  const Text(
                     'Phone Verification',
                     style: TextStyle(
                       fontSize: 28,

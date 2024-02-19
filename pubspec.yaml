@@ -69,13 +69,20 @@ flutter:
     - assets/mobile_hold.png
     - assets/mobile.svg
     - assets/mobile.png
+    - assets/mobile_outline.png
     - assets/ride_tracker.svg
     - assets/ride_tracker.png
+    - assets/star.png
+    - assets/star_filled.png
+    - assets/circle_outline.png
+    - assets/circle.png
+    - assets/gift_box.png
 
     - assets/account_pr.svg
     - assets/biodata_bank.svg
     - assets/biodata_relationship.svg
     - assets/location_point.png
+    - assets/location_connection.png
     - assets/google_map_image.png
 
     - assets/location_tracker.svg

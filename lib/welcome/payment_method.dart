@@ -10,6 +10,18 @@ class PaymentMethod extends StatefulWidget {
 class _PaymentMethodState extends State<PaymentMethod> {
   @override
   Widget build(BuildContext context) {
+    final List<String> items = [
+      '**** **** **** 5967',
+      'Wilson.casper@bernice.info',
+      '**** **** **** 3461',
+    ];
+
+    final List<IconData> cardIcon = [
+      Icons.card_giftcard,
+      Icons.paypal,
+      Icons.local_atm_outlined,
+    ];
+
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -22,77 +34,106 @@ class _PaymentMethodState extends State<PaymentMethod> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  IconButton(
-                    icon: const Icon(Icons.arrow_back_ios),
-                    color: Colors.white,
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },),
-                  const SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      IconButton(
+                        icon: const Icon(Icons.arrow_back_ios),
+                        color: Colors.white,
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },),
                       const Text(
-                        'Kennedy Okoro',
+                        'Done',
                         style: TextStyle(
-                          fontSize: 28,
-                          fontFamily: 'Poppins-Bold',
+                          fontSize: 20,
+                          fontFamily: 'Poppins-Regular',
                           color: Colors.white,
                         ),
                       ),
-                      CircleAvatar(backgroundColor: Colors.blueGrey.shade50, radius: 30.0)
                     ],
                   ),
+                  const Text(
+                    'Payment Method',
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontFamily: 'Poppins-Bold',
+                      color: Colors.white,
+                    ),
+                  ),
+                  // CircleAvatar(backgroundColor: Colors.blueGrey.shade50, radius: 30.0),
                 ],
               ),
             ),
             Expanded(
-              child: ListView.builder(
-                itemCount: _messages.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
-                    child: _buildMessage(_messages[index]),
-                  );
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey.shade200, width: 1), // Border color
-                          borderRadius: BorderRadius.circular(5.0),
-                          color: Colors.grey.shade100// Border radius
+              child: Container(
+                color: Colors.white,
+                child: Column(
+                  children: [
+                    ListTile(
+                      leading: const CircleAvatar(
+                          backgroundColor: Colors.greenAccent,
+                          radius: 30.0,
+                        child: Icon(Icons.currency_exchange),
                       ),
-                      child: TextField(
-                        controller: _messageController,
-                        decoration: const InputDecoration(
-                          hintText: 'Type a message...',
-                          border: InputBorder.none, // Remove default border
-                          contentPadding: EdgeInsets.symmetric(horizontal: 10.0),
-                        ),
-                      ),
+                      title: const Text('Cash', style: TextStyle(color: Colors.black),),
+                      subtitle: const Text('Default Payment Method', style: TextStyle(color: Colors.black45, fontSize: 24),),
+                      trailing: IconButton(icon: const Icon(Icons.navigate_next, color: Colors.grey, size: 12), onPressed: () {},),
                     ),
-                  ),
-                  const SizedBox(width: 8.0),
-                  IconButton(
-                    onPressed: () {
-                      String message = _messageController.text;
-                      if (message.isNotEmpty) {
-                        _sendMessage(message);
-                      }
-                    },
-                    icon: const Icon(Icons.send_outlined, color: Colors.greenAccent),
-                  )
-                ],
+                    const SizedBox(height: 5),
+                    ListView.builder(
+                      itemCount: items.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        if (index < items.length && index < cardIcon.length) {
+                          return Column(
+                            children: [
+                              Card(
+                                elevation: 2,
+                                color: Colors.grey.shade100,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.green, width: 2), // Green border
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      children: [
+                                        Icon(cardIcon[index]),
+                                        Text(items[index]),
+                                        items.length == 1 ? const Icon(Icons.check_circle_rounded, color: Colors.green) : const Text(''),
+                                      ],),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 5,
+                              ),
+                            ],
+                          );
+                        } else {
+                          return const SizedBox();
+                        }
+                      },
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: ElevatedButton(onPressed: () {},
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: const [
+                            Icon(Icons.add_circle, color: Colors.white),
+                            SizedBox(width: 5),
+                            Text('Add New Method'),
+                          ],
+                        )),
+                    )
+                  ],
+                ),
               ),
             ),
           ],
         ),
       ),
-    );  }
+    );}
 }
+

@@ -20,11 +20,12 @@ class _MessagingPageState extends State<MessagingPage> {
   }
   @override
   Widget build(BuildContext context) {
-    Future.delayed(const Duration(minutes: 2), () {
+    Future.delayed(const Duration(seconds: 2), () {
+    // Future.delayed(const Duration(seconds: 40), () {
       Navigator.pushReplacement(
         context,
         PageRouteBuilder(
-          transitionDuration: const Duration(milliseconds: 700),
+          transitionDuration: const Duration(milliseconds: 200),
           pageBuilder: (_, __, ___) => const NotificationPage(),
           transitionsBuilder: (_, animation, __, child) {
             return SlideTransition(
@@ -75,6 +76,7 @@ class _MessagingPageState extends State<MessagingPage> {
                 ],
               ),
             ),
+            const SizedBox(height: 12),
             Expanded(
               child: ListView.builder(
                 itemCount: _messages.length,
@@ -99,6 +101,7 @@ class _MessagingPageState extends State<MessagingPage> {
                       ),
                       child: TextField(
                         controller: _messageController,
+                        showCursor: true,
                         decoration: const InputDecoration(
                           hintText: 'Type a message...',
                           border: InputBorder.none, // Remove default border

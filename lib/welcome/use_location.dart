@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import '../auth/login_page.dart';
 
 class SelectLocation extends StatelessWidget {
@@ -7,7 +6,7 @@ class SelectLocation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(const Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 2), () {
       Navigator.pushReplacement(
         context,
         PageRouteBuilder(
@@ -32,10 +31,19 @@ class SelectLocation extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            SvgPicture.asset(
-                'assets/location_tracker.svg',
-                height: 200,
-                color: Colors.grey,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40.0),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Image.asset('assets/mobile_outline.png', width: 100, height: 90),
+                        Image.asset('assets/location_connection.png', width: 120, height: 100),
+                  ]),
+                  const Divider(height: 1, thickness: 1, color: Colors.black),
+                ],
+              ),
             ),
             Column(
               children: const [
