@@ -11,7 +11,7 @@ class WelcomeScreen extends StatelessWidget {
       Navigator.pushReplacement(
         context,
         PageRouteBuilder(
-          transitionDuration: const Duration(milliseconds: 800),
+          transitionDuration: const Duration(milliseconds: 200),
           pageBuilder: (_, __, ___) => WelcomePageView(),
           transitionsBuilder: (_, animation, __, child) {
             return SlideTransition(

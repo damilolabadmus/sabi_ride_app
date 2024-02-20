@@ -63,85 +63,83 @@ final List<Color> iconsColor = [
     });
 
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            Container(
-              color: Colors.amber,
-              padding: const EdgeInsets.all(15.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.arrow_back_ios),
-                    color: Colors.white,
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },),
-                  const SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text(
-                        'Notifications',
-                        style: TextStyle(
-                          fontSize: 28,
-                          fontFamily: 'Poppins-Bold',
-                          color: Colors.white,
-                        ),
-                      ),
-                      CircleAvatar(
-                          backgroundColor: const Color.fromRGBO(255, 255, 255, 0.5),
-                          radius: 20.0,
-                          child: IconButton(icon: const Icon(Icons.delete),
-                            color: Colors.white,
-                            onPressed: () {
-                              Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Rating()));
-                            },))
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
+      body: Column(
+        children: [
+          Container(
+            color: Colors.amber,
+            padding: const EdgeInsets.all(15.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                IconButton(
+                  icon: const Icon(Icons.arrow_back_ios),
                   color: Colors.white,
-                  child: ListView.builder(
-                    itemCount: titles?.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      if (index < titles!.length && index < subTitles!.length && index < avatarIcon.length && index < iconsColor.length) {
-                        return Column(
-                          children: [
-                            ListTile(
-                              contentPadding: const EdgeInsets.symmetric(vertical: 8.0), // Add vertical padding
-                              leading: CircleAvatar(
-                                radius: 20.0,
-                                backgroundColor: Colors.white.withOpacity(0.8),
-                                child: Icon(avatarIcon[index], color: iconsColor[index]),
-                              ),
-                              title: Text(titles![index]),
-                              subtitle: Text(subTitles![index]),
-                              onTap: () {},
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },),
+                const SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'Notifications',
+                      style: TextStyle(
+                        fontSize: 28,
+                        fontFamily: 'Poppins-Bold',
+                        color: Colors.white,
+                      ),
+                    ),
+                    CircleAvatar(
+                        backgroundColor: const Color.fromRGBO(255, 255, 255, 0.5),
+                        radius: 20.0,
+                        child: IconButton(icon: const Icon(Icons.delete),
+                          color: Colors.white,
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Rating()));
+                          },))
+                  ],
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 8),
+              child: Container(
+                color: Colors.white,
+                child: ListView.builder(
+                  itemCount: titles?.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    if (index < titles!.length && index < subTitles!.length && index < avatarIcon.length && index < iconsColor.length) {
+                      return Column(
+                        children: [
+                          ListTile(
+                            contentPadding: const EdgeInsets.symmetric(vertical: 8.0), // Add vertical padding
+                            leading: CircleAvatar(
+                              radius: 20.0,
+                              backgroundColor: Colors.white.withOpacity(0.8),
+                              child: Icon(avatarIcon[index], color: iconsColor[index]),
                             ),
-                            Container(
-                              height: 1, // Height of the divider line
-                              color: Colors.grey.shade300, // Color of the divider line
-                            ),
-                          ],
-                        );
-                      } else {
-                        return const SizedBox();
-                      }
-                    },
-                  ),
+                            title: Text(titles![index]),
+                            subtitle: Text(subTitles![index]),
+                            onTap: () {},
+                          ),
+                          Container(
+                            height: 1, // Height of the divider line
+                            color: Colors.grey.shade300, // Color of the divider line
+                          ),
+                        ],
+                      );
+                    } else {
+                      return const SizedBox();
+                    }
+                  },
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

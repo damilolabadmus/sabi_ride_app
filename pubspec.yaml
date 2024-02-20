@@ -77,6 +77,9 @@ flutter:
     - assets/circle_outline.png
     - assets/circle.png
     - assets/gift_box.png
+    - assets/visa_card.png
+    - assets/paypal_logo.png
+    - assets/mastercard.png
 
     - assets/account_pr.svg
     - assets/biodata_bank.svg

@@ -41,7 +41,7 @@ class _PhoneVerificationState extends State<PhoneVerification> {
                       letterSpacing: 2
                     ),
                   ),
-                  Text(
+                  const Text(
                     'Enter your OTP code here',
                     style: TextStyle(
                       fontSize: 15,

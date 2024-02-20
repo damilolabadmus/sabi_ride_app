@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:sabi/welcome/view_birthday.dart';
 
 class AccountPage extends StatefulWidget {
-  const AccountPage({super.key});
 
   @override
   State<AccountPage> createState() => _AccountPageState();
@@ -26,12 +25,12 @@ class _AccountPageState extends State<AccountPage> {
       '+234 9031193287'
     ];
 
-    Future.delayed(const Duration(minutes: 2), () {
+    Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,
         PageRouteBuilder(
-          transitionDuration: const Duration(milliseconds: 700),
-          pageBuilder: (_, __, ___) => const ViewBirthday(),
+          transitionDuration: const Duration(milliseconds: 200),
+          pageBuilder: (_, __, ___) => ViewBirthday(),
           transitionsBuilder: (_, animation, __, child) {
             return SlideTransition(
               position: Tween<Offset>(
@@ -46,73 +45,175 @@ class _AccountPageState extends State<AccountPage> {
     });
 
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Container(
-              color: Colors.amber,
-              padding: const EdgeInsets.all(15.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.arrow_back_ios),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Container(
+            color: Colors.amber.shade400,
+            padding: const EdgeInsets.all(15.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 15),
+                IconButton(
+                  icon: const Icon(Icons.arrow_back_ios),
+                  color: Colors.white,
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },),
+                Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [const Text('My Account',
+                  style: TextStyle(
+                    fontSize: 28,
+                    fontFamily: 'Poppins-Bold',
                     color: Colors.white,
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },),
-                  Row(
-                    children: [
-                      const Text(
-                        'My Account',
-                        style: TextStyle(
-                          fontSize: 28,
-                          fontFamily: 'Poppins-Bold',
-                          color: Colors.white,
-                        ),
-                      ),
-                      CircleAvatar(
-                          backgroundColor: Colors.blueGrey.shade50,
-                          radius: 30.0),
-                    ],
                   ),
-                  // CircleAvatar(backgroundColor: Colors.blueGrey.shade50, radius: 30.0),
-                ],
-              ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 8.0),
+                  child: CircleAvatar(
+                        backgroundColor: Colors.blueGrey.shade50,
+                        radius: 30.0),
+                ),],),
+              ],
             ),
-            Expanded(
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
               child: Container(
                 color: Colors.white,
-                child: Column(
-                  children: [
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Card(
+                        elevation: 1,
+                        color: Colors.white,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text('Level', style: TextStyle(fontSize: 16, color: Colors.black)),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text('Gold Member', style: TextStyle(fontSize: 16, color: Colors.black26)),
+                                IconButton(
+                                    onPressed: () {},
+                                    icon: const Icon(Icons.navigate_next))
+                              ],)
+                          ],),
+                      ),
+                      const SizedBox(height: 35),
+                      Card(
+                        elevation: 1,
+                        color: Colors.white,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text('Name', style: TextStyle(fontSize: 16, color: Colors.black)),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text('Emeka Chioma', style: TextStyle(fontSize: 16, color: Colors.black26)),
+                                IconButton(
+                                    onPressed: () {},
+                                    icon: const Icon(Icons.navigate_next))
+                              ],)
+                          ],),
+                      ),
+                      Card(
+                        elevation: 1,
+                        color: Colors.white,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text('Email', style: TextStyle(fontSize: 16, color: Colors.black)),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text('freeslab88@gmail.com', style: TextStyle(fontSize: 16, color: Colors.black26)),
+                                IconButton(
+                                    onPressed: () {},
+                                    icon: const Icon(Icons.navigate_next))
+                              ],)
+                          ],),
+                      ),
+                      const SizedBox(height: 10),
+                      Card(
+                        elevation: 1,
+                        color: Colors.white,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text('Gender', style: TextStyle(fontSize: 16, color: Colors.black)),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                              const Text('Male', style: TextStyle(fontSize: 16, color: Colors.black26)),
+                              IconButton(
+                                  onPressed: () {},
+                                  icon: const Icon(Icons.navigate_next))
+                            ],)
+                          ],),
+                      ),
+                      Card(
+                        elevation: 1,
+                        color: Colors.white,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text('Birthday', style: TextStyle(fontSize: 16, color: Colors.black)),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text('April 16 1998', style: TextStyle(fontSize: 16, color: Colors.black26)),
+                                IconButton(
+                                    onPressed: () {},
+                                    icon: const Icon(Icons.navigate_next))
+                              ],)
+                          ],),
+                      ),
+                      Card(
+                        elevation: 1,
+                        color: Colors.white,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text('Phone number', style: TextStyle(fontSize: 16, color: Colors.black)),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text('+234 8031193287', style: TextStyle(fontSize: 16, color: Colors.black26)),
+                                IconButton(
+                                    onPressed: () {},
+                                    icon: const Icon(Icons.navigate_next))
+                              ],)
+                          ],),
+                      ),
+                      const SizedBox(height: 15),
+
+                      /*
                     ListView.builder(
-                      itemCount: accountItems.length,
+                      itemCount: items.length,
                       itemBuilder: (BuildContext context, int index) {
-                        if (index < accountItems.length && index < personalInfo.length) {
+                        if (index < items.length) {
                           return Column(
                             children: [
-                              Card(
-                                elevation: 2,
-                                color: Colors.white,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                    Text(accountItems[index]),
-                                    Row(children: [
-                                      Text(personalInfo[index], style: const TextStyle(color: Colors.grey),),
-                                      IconButton(
-                                          onPressed: () {},
-                                          icon: const Icon(Icons.navigate_next))
-                                    ],)
-                                  ],),
-                                ),
+                            Card(
+                              elevation: 2,
+                              color: Colors.white,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(children: [
+                                const Text('Okay'),
+                                IconButton(
+                                  onPressed: () {},
+                                  icon: const Icon(Icons.navigate_next))
+                                ],),
+                               ),
                               ),
                               const SizedBox(
-                                height: 10,
+                                height: 5,
                               ),
                             ],
                           );
@@ -121,12 +222,50 @@ class _AccountPageState extends State<AccountPage> {
                         }
                       },
                     ),
-                  ],
+*/
+                    ],),
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );  }
 }
+
+
+/*  ListView.builder(
+      itemCount: accountItems.length,
+      itemBuilder: (BuildContext context, int index) {
+        if (index < accountItems.length && index < personalInfo.length) {
+          return Column(
+            children: [
+              Card(
+                elevation: 2,
+                color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                    Text(accountItems[index]),
+                    Row(children: [
+                      Text(personalInfo[index], style: const TextStyle(color: Colors.grey),),
+                      IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.navigate_next))
+                    ],)
+                  ],),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+            ],
+          );
+        } else {
+          return const SizedBox();
+        }
+      },
+    ),
+*/

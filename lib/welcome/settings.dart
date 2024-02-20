@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sabi/components/button.dart';
 import 'package:sabi/welcome/account_page.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -20,12 +19,12 @@ class _SettingsPageState extends State<SettingsPage> {
       'Contact Us'
     ];
 
-    Future.delayed(const Duration(minutes: 1000), () {
+    Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,
         PageRouteBuilder(
-          transitionDuration: const Duration(milliseconds: 700),
-          pageBuilder: (_, __, ___) => const AccountPage(),
+          transitionDuration: const Duration(milliseconds: 200),
+          pageBuilder: (_, __, ___) => AccountPage(),
           transitionsBuilder: (_, animation, __, child) {
             return SlideTransition(
               position: Tween<Offset>(
@@ -40,38 +39,39 @@ class _SettingsPageState extends State<SettingsPage> {
     });
 
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Container(
-              color: Colors.amber.shade400,
-              padding: const EdgeInsets.all(15.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.arrow_back_ios),
-                    color: Colors.white,
-                    onPressed: () {
-                      Navigator.pop(context);
-                  },),
-                  const Text('Settings',
-                  style: TextStyle(
-                    fontSize: 28,
-                    fontFamily: 'Poppins-Bold',
-                    color: Colors.white,
-                  ),
-                    ),
-                  const SizedBox(height: 10),
-                ],
-              ),
-            ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Container(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Container(
+            color: Colors.amber.shade400,
+            padding: const EdgeInsets.all(15.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 15),
+                IconButton(
+                  icon: const Icon(Icons.arrow_back_ios),
                   color: Colors.white,
+                  onPressed: () {
+                    Navigator.pop(context);
+                },),
+                const Text('Settings',
+                style: TextStyle(
+                  fontSize: 28,
+                  fontFamily: 'Poppins-Bold',
+                  color: Colors.white,
+                ),
+                  ),
+                const SizedBox(height: 10),
+              ],
+            ),
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Container(
+                color: Colors.white,
+                child: SingleChildScrollView(
                   child: Column(
                     children: [
                     ListTile(
@@ -81,32 +81,103 @@ class _SettingsPageState extends State<SettingsPage> {
                           radius: 25.0),
                       title: const Text('Ngozi Chukwudi', style: TextStyle(color: Colors.black),),
                       subtitle: const Text('Gold Member', style: TextStyle(color: Colors.black54),),
-                      trailing: IconButton(icon: const Icon(Icons.navigate_next, color: Colors.grey, size: 15), onPressed: () {},),
+                      trailing: IconButton(icon: const Icon(Icons.navigate_next, color: Colors.grey, size: 30), onPressed: () {},),
                     ),
-                    ListView.builder(
-                      itemCount: 3,
-                        itemBuilder: (BuildContext context, int index) {
-                      return Card(
-                        elevation: 2,
+                    Card(
+                      elevation: 1,
+                      color: Colors.white,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                        const Text('Notifications', style: TextStyle(fontSize: 16)),
+                        IconButton(
+                            onPressed: () {},
+                            icon: const Icon(Icons.navigate_next))
+                      ],),
+                    ),
+                      Card(
+                      elevation: 1,
+                      color: Colors.white,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                        const Text('Security', style: TextStyle(fontSize: 16)),
+                        IconButton(
+                            onPressed: () {},
+                            icon: const Icon(Icons.navigate_next))
+                      ],),
+                    ),
+                      Card(
+                      elevation: 1,
+                      color: Colors.white,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                        const Text('Language', style: TextStyle(fontSize: 16)),
+                        IconButton(
+                            onPressed: () {},
+                            icon: const Icon(Icons.navigate_next))
+                      ],),
+                    ),
+                      const SizedBox(height: 10),
+                      Card(
+                        elevation: 1,
                         color: Colors.white,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(children: [
-                            const Text('Okay'),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text('Clear cache', style: TextStyle(fontSize: 16)),
                             IconButton(
                                 onPressed: () {},
                                 icon: const Icon(Icons.navigate_next))
                           ],),
-                        ),
-                      );
-                    }),
-/*
+                      ),
+                      Card(
+                        elevation: 1,
+                        color: Colors.white,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text('Terms & Privacy Policy', style: TextStyle(fontSize: 16)),
+                            IconButton(
+                                onPressed: () {},
+                                icon: const Icon(Icons.navigate_next))
+                          ],),
+                      ),
+                      Card(
+                        elevation: 1,
+                        color: Colors.white,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text('Contact us', style: TextStyle(fontSize: 16)),
+                            IconButton(
+                                onPressed: () {},
+                                icon: const Icon(Icons.navigate_next))
+                          ],),
+                      ),
+                      const SizedBox(height: 15),
+
+                      /*
                     ListView.builder(
                       itemCount: items.length,
                       itemBuilder: (BuildContext context, int index) {
                         if (index < items.length) {
                           return Column(
                             children: [
+                            Card(
+                              elevation: 2,
+                              color: Colors.white,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(children: [
+                                const Text('Okay'),
+                                IconButton(
+                                  onPressed: () {},
+                                  icon: const Icon(Icons.navigate_next))
+                                ],),
+                               ),
+                              ),
                               const SizedBox(
                                 height: 5,
                               ),
@@ -119,21 +190,23 @@ class _SettingsPageState extends State<SettingsPage> {
                     ),
 */
                     SizedBox(
-                      width: 300,
+                      width: 400,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => AccountPage()));
+                        },
                         style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(Colors.yellow),
+                          backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
                         ),
-                        child: const Text('Log Out', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w800),),
+                        child: const Text('Log Out', style: TextStyle(color: Colors.black26, fontSize: 18, fontWeight: FontWeight.w600),),
                       ),
                     ),
                   ],),
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );  }
 

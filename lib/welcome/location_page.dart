@@ -38,13 +38,11 @@ class _LocationPageState extends State<LocationPage> {
         ),
       );
     });
-    return SafeArea(
-      child: Image.asset(
-        'assets/google_map_image.png',
-        width: 250.0,
-        height: 350.0,
-        fit: BoxFit.fill,
-      ),
+    return Image.asset(
+      'assets/google_map_image.png',
+      width: 250.0,
+      height: 350.0,
+      fit: BoxFit.fill,
     );
   }
 }

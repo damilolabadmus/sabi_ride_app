@@ -20,8 +20,7 @@ class _MessagingPageState extends State<MessagingPage> {
   }
   @override
   Widget build(BuildContext context) {
-    Future.delayed(const Duration(seconds: 2), () {
-    // Future.delayed(const Duration(seconds: 40), () {
+    Future.delayed(const Duration(seconds: 15), () {
       Navigator.pushReplacement(
         context,
         PageRouteBuilder(
@@ -41,7 +40,7 @@ class _MessagingPageState extends State<MessagingPage> {
     });
 
     return Scaffold(
-      body: SafeArea(
+      body: Container(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
